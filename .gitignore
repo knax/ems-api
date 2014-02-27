@@ -1,4 +1,5 @@
 /app/storage
+/app/tests/_log
 /bootstrap/compiled.php
 /vendor
 composer.phar
