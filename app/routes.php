@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/v1', function()
 {
-	return View::make('hello');
+	return Response::json(array('result' => array('status' => 'success')));
 });
