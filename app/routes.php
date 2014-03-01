@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/v1', function()
-{
-	return Response::json(array('result' => array('status' => 'success')));
+Route::group(array('prefix' => '/v1', 'before' => 'auth.basic.once'), function() {
+
+	Route::get('/', function() {
+		return Response::json(array('result' => array('status' => 'success')));
+	});
+
 });
