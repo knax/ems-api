@@ -41,10 +41,17 @@ Route::filter('auth', function()
 
 Route::filter('auth.basic.once', function()
 {
-
     Config::set('session.driver', 'array');
 
-	return Auth::onceBasic('username');
+	$credentials = ['username' => Request::getUser(), 'password' => Request::getPassword()];
+
+    if (!Auth::once($credentials)) {
+        $response   = ['error' => true, 'message' => 'Unauthorized request'];
+        $code       = 401;
+        $headers    = ['WWW-Authenticate' => 'Basic'];
+
+        return Response::json($response, $code, $headers);
+    }
 });
 
 /*
