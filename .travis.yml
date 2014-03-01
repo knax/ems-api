@@ -1,13 +1,9 @@
 language: php
 
 php:
-  - 5.4
   - 5.5
 
 before_script:
-  - echo "yes" | sudo add-apt-repository ppa:ondrej/php5
-  - sudo apt-get update
-  - sudo apt-get install php5 php5-curl
   - composer install --no-interaction --dev
-  - php -S api.localhost server.php
+  - php -S 127.0.0.1:8000 server.php
   - vendor/bin/codecept run --steps
