@@ -6,6 +6,7 @@ php:
 before_script:
   - composer install --no-interaction --dev --prefer-dist
   - php -S 127.0.0.1:8000 server.php &
-  - chmod -R 0777 app/tests
+
+script:
   - vendor/bin/codecept run --steps
   - kill %1
