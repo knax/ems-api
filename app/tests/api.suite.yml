@@ -3,6 +3,6 @@ modules:
     enabled: [PhpBrowser, REST, ApiHelper, Laravel4]
     config:
       PhpBrowser:
-          url: http://api.localhost/
+          url: https://api.localhost/
       REST:
-          url: http://api.localhost/v1/
+          url: https://api.localhost/v1/
