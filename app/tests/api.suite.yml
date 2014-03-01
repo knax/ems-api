@@ -1,6 +1,6 @@
 class_name: ApiGuy
 modules:
-    enabled: [PhpBrowser, REST, ApiHelper, Laravel4]
+    enabled: [PhpBrowser, REST, ApiHelper]
     config:
       PhpBrowser:
           url: https://api.localhost/
