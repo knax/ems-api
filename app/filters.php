@@ -41,6 +41,9 @@ Route::filter('auth', function()
 
 Route::filter('auth.basic.once', function()
 {
+
+    Config::set('session.driver', 'array');
+
 	return Auth::onceBasic('username');
 });
 
