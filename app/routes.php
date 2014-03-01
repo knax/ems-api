@@ -13,8 +13,12 @@
 
 Route::group(array('prefix' => '/v1', 'before' => 'auth.basic.once'), function() {
 
-	Route::get('/', function() {
-		return Response::json(array('result' => array('status' => 'success')));
-	});
+	Route::get('/', ['as' => 'homepage', function() {
+		return Response::json(['error'=>false, 'message'=>'welcome '.Auth::user()->username]);
+	}]);
 
+});
+
+Route::get('/', function() {
+	return Redirect::route('homepage');
 });
