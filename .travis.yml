@@ -7,8 +7,7 @@ php:
 before_script:
   - echo "yes" | sudo add-apt-repository ppa:ondrej/php5
   - sudo apt-get update
-  - sudo apt-get install php5 php5-curl php5-mbstring php5-mcrpyt
-  - curl -sS https://getcomposer.org/installer | php
-  - php composer.phar install --no-interaction --dev
+  - sudo apt-get install php5 php5-curl
+  - composer install --no-interaction --dev
   - php -S api.localhost server.php
   - vendor/bin/codecept run --steps
