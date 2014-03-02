@@ -15,4 +15,3 @@ modules:
             dsn: 'mysql:host=localhost;dbname=travis'
             user: 'travis'
             password: ''
-            dump: app/tests/_data/dump.sql
