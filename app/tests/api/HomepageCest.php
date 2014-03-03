@@ -17,7 +17,7 @@ class HomepageCest
     {
     }
 
-    public function homepageWithAuthentication(ApiGuy $I)
+    public function tryToRequestWithAuthentication(ApiGuy $I)
     {
         $I->haveInDatabase('users', array('username' => $this->username, 'password' => $this->hashedPassword));
         $I->wantTo('see the homepage of the api with authentication');
@@ -27,7 +27,7 @@ class HomepageCest
         $I->seeResponseContainsJson(['error' => false, 'message' => 'welcome ' . $this->username]);
     }
 
-    public function homepageWithoutAuthentication(ApiGuy $I)
+    public function tryToRequestWithoutAuthentication(ApiGuy $I)
     {
         $I->wantTo('see the homepage of the api without authentication');
         $I->sendGET('');
