@@ -13,9 +13,10 @@
 
 Route::group(array('prefix' => '/v1', 'before' => 'auth.basic.once'), function() {
 
-	Route::get('/', ['as' => 'homepage', function() {
-		return Response::json(['error'=>false, 'message'=>'welcome '.Auth::user()->username]);
-	}]);
+	Route::get('/', [
+            'as' => 'homepage',
+            'uses' => 'App\\Controller\\v1\\HomepageController@index'
+        ]);
 
 });
 
