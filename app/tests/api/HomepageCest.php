@@ -1,9 +1,7 @@
 <?php
-use \ApiGuy;
 
 class HomepageCest
 {
-
 	private $username = 'someuser';
 
 	private $password = 'somepass';
@@ -19,17 +17,17 @@ class HomepageCest
 	{
 	}
 
-	public function homepageWithAuthencation(ApiGuy $I) {
+	public function homepageWithAuthentication(ApiGuy $I) {
 		$I->haveInDatabase('users', array('username' => $this->username, 'password' => $this->hashedPassword));
-		$I->wantTo('see the homepage of the api with authencation');
+		$I->wantTo('see the homepage of the api with authentication');
 		$I->amHttpAuthenticated($this->username, $this->password);
 		$I->sendGET('');
 		$I->seeResponseCodeIs(200);
 		$I->seeResponseContainsJson(['error' => false, 'message' => 'welcome '.$this->username]);
 	}
 
-	public function homepageWithoutAuthencation(ApiGuy $I) {
-		$I->wantTo('see the homepage of the api without authencation');
+	public function homepageWithoutAuthentication(ApiGuy $I) {
+		$I->wantTo('see the homepage of the api without authentication');
 		$I->sendGET('');
 		$I->seeResponseCodeIs(401);
 		$I->seeResponseContainsJson(['error' => true, 'message' => 'Unauthorized request']);
