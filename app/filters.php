@@ -11,16 +11,18 @@
 |
 */
 
-App::before(function($request)
-{
-	//
-});
+App::before(
+    function ($request) {
+        //
+    }
+);
 
 
-App::after(function($request, $response)
-{
-	//
-});
+App::after(
+    function ($request, $response) {
+        //
+    }
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -33,26 +35,32 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('auth', function()
-{
-	if (Auth::guest()) return Redirect::guest('login');
-});
-
-
-Route::filter('auth.basic.once', function()
-{
-    Config::set('session.driver', 'array');
-
-	$credentials = ['username' => Request::getUser(), 'password' => Request::getPassword()];
-
-    if (!Auth::once($credentials)) {
-        $response   = ['error' => true, 'message' => 'Unauthorized request'];
-        $code       = 401;
-        $headers    = ['WWW-Authenticate' => 'Basic'];
-
-        return Response::json($response, $code, $headers);
+Route::filter(
+    'auth',
+    function () {
+        if (Auth::guest()) {
+            return Redirect::guest('login');
+        }
     }
-});
+);
+
+
+Route::filter(
+    'auth.basic.once',
+    function () {
+        Config::set('session.driver', 'array');
+
+        $credentials = ['username' => Request::getUser(), 'password' => Request::getPassword()];
+
+        if (!Auth::once($credentials)) {
+            $response = ['error' => true, 'message' => 'Unauthorized request'];
+            $code = 401;
+            $headers = ['WWW-Authenticate' => 'Basic'];
+
+            return Response::json($response, $code, $headers);
+        }
+    }
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -65,10 +73,14 @@ Route::filter('auth.basic.once', function()
 |
 */
 
-Route::filter('guest', function()
-{
-	if (Auth::check()) return Redirect::to('/');
-});
+Route::filter(
+    'guest',
+    function () {
+        if (Auth::check()) {
+            return Redirect::to('/');
+        }
+    }
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -81,10 +93,11 @@ Route::filter('guest', function()
 |
 */
 
-Route::filter('csrf', function()
-{
-	if (Session::token() != Input::get('_token'))
-	{
-		throw new Illuminate\Session\TokenMismatchException;
-	}
-});
+Route::filter(
+    'csrf',
+    function () {
+        if (Session::token() != Input::get('_token')) {
+            throw new Illuminate\Session\TokenMismatchException;
+        }
+    }
+);

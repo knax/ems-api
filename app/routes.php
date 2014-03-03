@@ -11,15 +11,24 @@
 |
 */
 
-Route::group(array('prefix' => '/v1', 'before' => 'auth.basic.once'), function() {
+Route::group(
+    array('prefix' => '/v1', 'before' => 'auth.basic.once'),
+    function () {
 
-	Route::get('/', [
-            'as' => 'homepage',
-            'uses' => 'App\\Controller\\v1\\HomepageController@index'
-        ]);
+        Route::get(
+            '/',
+            [
+                'as' => 'homepage',
+                'uses' => 'App\\Controller\\v1\\HomepageController@index'
+            ]
+        );
 
-});
+    }
+);
 
-Route::get('/', function() {
-	return Redirect::route('homepage');
-});
+Route::get(
+    '/',
+    function () {
+        return Redirect::route('homepage');
+    }
+);
